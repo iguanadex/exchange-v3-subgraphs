@@ -6,21 +6,36 @@ import { exponentToBigDecimal, safeDiv } from './index'
 import { getOrLoadToken } from './entity'
 
 // prettier-ignore
-const WETH_ADDRESS = '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c'
+const WETH_ADDRESS = '0xc9b53ab2679f573e480d01e0f49e2b5cfb7a3eab' // WXTZ
 // prettier-ignore
-const USDC_WETH_03_POOL = '0x36696169c63e42cd08ce11f5deebbcebae652050'
+const USDC_WETH_03_POOL = '0x508060a01f11d6a2eb774b55aeba95931265e0cc' // USDC/WXTZ pool
 
 const STABLE_IS_TOKEN0 = 'true' as string
 
 // token where amounts should contribute to tracked volume and liquidity
 // usually tokens that many tokens are paired with s
 // prettier-ignore
-export let WHITELIST_TOKENS: string[] = '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c,0x55d398326f99059ff775485246999027b3197955,0xe9e7cea3dedca5984780bafc599bd69add087d56,0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d,0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c,0x2170ed0880ac9a755fd29b2688956bd959f933f8,0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82'.split(',')
+export const WHITELIST_TOKENS: string[] = [
+  "0xc9b53ab2679f573e480d01e0f49e2b5cfb7a3eab", // WXTZ
+  "0x2c03058c8afc06713be23e58d2febc8337dbfe6a", // USDT
+  "0x796ea11fa2dd751ed01b53c372ffdb4aaa8f00f9", // USDC
+  "0xbfc94cd2b1e55999cfc7347a9313e88702b83d0f", // WBTC
+  "0xfc24f770f94edbca6d6f885e12d4317320bcb401", // WETH
+  "0xaa40a1cc1561c584b675cbd12f1423a32e2a0d8c", // WBNB
+  "0xe820995cd39b6e09eaa7e4e16337184b4a61b644", // WAVAX
+  "0xbbd1f50a212357067318a84179892684e1ac5181", // SHIB
+];
+// export let WHITELIST_TOKENS: string[] = '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c,0x55d398326f99059ff775485246999027b3197955,0xe9e7cea3dedca5984780bafc599bd69add087d56,0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d,0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c,0x2170ed0880ac9a755fd29b2688956bd959f933f8,0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82'.split(',')
 
 // prettier-ignore
-let STABLE_COINS: string[] = '0x55d398326f99059ff775485246999027b3197955,0xe9e7cea3dedca5984780bafc599bd69add087d56,0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d'.split(',')
+const STABLE_COINS: string[] = [
+  // Mainnet
+  "0x2c03058c8afc06713be23e58d2febc8337dbfe6a", // USDT
+  "0x796ea11fa2dd751ed01b53c372ffdb4aaa8f00f9", // USDC
+];
+// let STABLE_COINS: string[] = '0x55d398326f99059ff775485246999027b3197955,0xe9e7cea3dedca5984780bafc599bd69add087d56,0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d'.split(',')
 
-let MINIMUM_ETH_LOCKED = BigDecimal.fromString('10')
+let MINIMUM_ETH_LOCKED = BigDecimal.fromString('5')
 
 let Q192 = BigInt.fromI32(2).pow(192)  // Ensure safe calculation of 2^192 using BigInt
 export function sqrtPriceX96ToTokenPrices(sqrtPriceX96: BigInt, token0: Token, token1: Token): BigDecimal[] {

@@ -14,7 +14,8 @@
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 v3",
     "format": "biome format . --write",
     "lint": "biome check . --organize-imports-enabled=false",
-    "lint:fix": "yarn run lint  --apply"
+    "lint:fix": "yarn run lint  --apply",
+    "deploy:etherlink": "graph deploy --studio exchange-v3-etherlink"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.74.1",
