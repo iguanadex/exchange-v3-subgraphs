@@ -3,6 +3,7 @@
   "compilerOptions": {
     "types": ["@graphprotocol/graph-ts"],
     "strict": false,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "lib": ["es6", "es2016"]
   }
 }
