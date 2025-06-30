@@ -10,7 +10,7 @@ indexerHints:
 dataSources:
   - kind: ethereum/contract
     name: Factory
-    network: etherlink-mainnet
+    network: etherlink
     source:
       address: "0x093ccbaecb0e0006c8bffca92e9929d117fec583"
       abi: Factory
@@ -39,7 +39,7 @@ dataSources:
           handler: handlePoolCreated
   - kind: ethereum/contract
     name: NonfungiblePositionManager
-    network: etherlink-mainnet
+    network: etherlink
     source:
       address: "0x34f957bcd46a9b0f8fccdcc945004ce03ac6bdb5"
       abi: NonfungiblePositionManager
@@ -73,7 +73,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Pool
-    network: etherlink-mainnet
+    network: etherlink
     source:
       abi: Pool
     mapping:
